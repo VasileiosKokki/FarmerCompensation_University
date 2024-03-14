@@ -1,0 +1,10 @@
+body {
+  font-family: monospace;
+}
+table td {
+  overflow: hidden;
+  text-overflow: ellipsis; /* Truncate text with an ellipsis if it exceeds the width */
+}
+table th {
+  vertical-align: top; /* Align the content to the top to prevent it from starting a new line */
+}
