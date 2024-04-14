@@ -5,7 +5,7 @@
 import { onBeforeMount, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useApplicationStore } from '@/stores/application.js';
-const backendEnvVar = import.meta.env.BACKEND;
+const backendEnvVar = import.meta.env.VITE_BACKEND;
 
 const router = useRouter();
 const { setUserData, persistUserData, isAuthenticated } = useApplicationStore();

@@ -3,7 +3,7 @@
 import { ref, onMounted } from 'vue';
 import { useRemoteData } from '@/composables/useRemoteData.js';
 import { useApplicationStore } from '@/stores/application.js';
-const backendEnvVar = import.meta.env.BACKEND;
+const backendEnvVar = import.meta.env.VITE_BACKEND;
 
 const { userData } = useApplicationStore();
 // const route = useRoute();
