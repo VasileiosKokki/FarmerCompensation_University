@@ -4,6 +4,7 @@
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useRemoteData } from '@/composables/useRemoteData.js';
+const backendEnvVar = import.meta.env.BACKEND;
 
 const formData = ref({
   address: "",
@@ -16,7 +17,7 @@ const initialPhone = useRoute().params.phone;
 const initialEmail = useRoute().params.email;
 const initialAddress = useRoute().params.address;
 const router = useRouter();
-const urlRef = ref(`http://localhost:8080/api/user/${userId}`);
+const urlRef = ref(`${backendEnvVar}/api/user/${userId}`);
 const authRef = ref(true);
 const methodRef = ref("PUT");
 

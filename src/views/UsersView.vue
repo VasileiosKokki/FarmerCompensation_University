@@ -2,8 +2,9 @@
 // Το component συνδέεται με το κατάλληλο endpoint και επικοινωνεί με το backend για να παραλάβει τα στοιχεία όλων των χρηστών.
 import { ref, onMounted } from 'vue';
 import { useRemoteData } from '@/composables/useRemoteData.js';
+const backendEnvVar = import.meta.env.BACKEND;
 
-const urlRef = ref('http://localhost:8080/api/user');
+const urlRef = ref(`${backendEnvVar}/api/user`);
 const authRef = ref(true);
 const { data, performRequest } = useRemoteData(urlRef, authRef);
 
