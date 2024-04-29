@@ -51,11 +51,11 @@ onMounted(() => {
                 <td>
                   <div class="btn-group">
                     <router-link v-if="typeof user.id !== 'undefined'" v-bind:to="{ name: 'edit-user', params: { id: user.id, phone: user.phone, email: user.email, address: user.address, data: data } }" class="btn btn-primary">Edit</router-link>
-                    <router-link :to="{ name: 'delete-user', params: { id: user.id } }" class="btn btn-danger">Delete</router-link>
+                    <router-link v-if="typeof user.id !== 'undefined'" v-bind:to="{ name: 'delete-user', params: { id: user.id } }" class="btn btn-danger">Delete</router-link>
                   </div>
                   <div class="mt-2">
-                    <router-link :to="{ name: 'role-to-user', params: { id: user.id, roleId: 1 } }" class="btn btn-outline-primary btn-sm">Assign Farmer Role</router-link>
-                    <router-link :to="{ name: 'role-to-user', params: { id: user.id, roleId: 2 } }" class="btn btn-outline-info btn-sm">Assign Inspector Role</router-link>
+                    <router-link v-if="typeof user.id !== 'undefined'" v-bind:to="{ name: 'role-to-user', params: { id: user.id, roleId: 1 } }" class="btn btn-outline-primary btn-sm">Assign Farmer Role</router-link>
+                    <router-link v-if="typeof user.id !== 'undefined'" v-bind:to="{ name: 'role-to-user', params: { id: user.id, roleId: 2 } }" class="btn btn-outline-info btn-sm">Assign Inspector Role</router-link>
                   </div>
                 </td>
               </tr>
