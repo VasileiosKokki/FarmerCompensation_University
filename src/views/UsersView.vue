@@ -1,6 +1,6 @@
 <script setup>
 // Το component συνδέεται με το κατάλληλο endpoint και επικοινωνεί με το backend για να παραλάβει τα στοιχεία όλων των χρηστών.
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { useRemoteData } from '@/composables/useRemoteData.js';
 // const backendEnvVar = import.meta.env.VITE_BACKEND;
 
@@ -11,8 +11,15 @@ const { data, performRequest } = useRemoteData(urlRef, authRef);
 onMounted(() => {
   performRequest();
   console.log(data);
-  console.log(data.value);
+  console.log(data._value);
 
+});
+
+watch(data, (newValue, oldValue) => {
+    if (newValue) {
+        console.log(newValue);
+        console.log(newValue.value);
+    }
 });
 </script>
 
