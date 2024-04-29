@@ -38,7 +38,7 @@ onMounted(() => {
               </tr>
               </thead>
               <tbody v-if="data && data.length > 0">
-              <tr v-for="user in data" :key="user.id">
+              <tr v-for="user in data._embedded.users" :key="user.id">
                 <td>{{ user.id }}</td>
                 <td>{{ user.username }}</td>
 <!--                <td>{{ user.password }}</td>-->
