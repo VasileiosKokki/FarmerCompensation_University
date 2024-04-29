@@ -3,14 +3,12 @@ import { useApplicationStore } from '@/stores/application.js';
 
 const store = useApplicationStore();
 
-export function useRemoteData(urlRef, authRef, methodRef = ref("GET"), bodyRef = ref(null)) {
+export function useRemoteData(urlRef, authRef, methodRef = ref("GET"), bodyRef = ref(null),) {
     const data = ref(null);
     const error = ref(null);
     const loading = ref(false);
-    const status = ref(null);
 
     const performRequest = () => {
-        let contentType;
         const headers = {
             'Content-Type': 'application/json'
         };
@@ -18,7 +16,6 @@ export function useRemoteData(urlRef, authRef, methodRef = ref("GET"), bodyRef =
         if (authRef.value === true) {
             headers['Authorization'] = 'Bearer ' + store.userData.accessToken;
         }
-
         const config = {
             method: methodRef.value,
             headers: headers,
@@ -28,41 +25,13 @@ export function useRemoteData(urlRef, authRef, methodRef = ref("GET"), bodyRef =
             config.body = JSON.stringify(bodyRef.value);
         }
 
-        loading.value = true;
-
-        return fetch(urlRef.value, config)
+        fetch(urlRef.value, config)
             .then((response) => {
-                // if (response.ok) {
-                    // Handle different methods accordingly
-                    switch (methodRef.value) {
-                        case 'GET':
-                        case 'POST':
-                        case 'PUT':
-                        case 'DELETE':
-
-                            contentType = response.headers.get('Content-Type');
-
-                            // Αν υπάρχει στο header το application/json τότε χειριζόμαστε το response που δεχόμαστε από το backend σαν json, αλλιώς σαν text.
-                            if (contentType && contentType.includes('application/json')) {
-                                return response.json().then((responseData) => {
-                                    data.value = responseData;
-                                    status.value = response.status;
-                                });
-                            } else {
-                                return response.text().then((responseData) => {
-                                    if (responseData != null) {
-                                        data.value = responseData;
-                                        status.value = response.status;
-                                    }
-                                });
-                            }
-
-                        default:
-                            break;
-                    }
-                // } else {
-                //     throw new Error(`Request failed with status: ${response.status}`);
-                // }
+                if (response.ok) {
+                    response.json().then((responseData) => {
+                        data.value = responseData;
+                    });
+                }
             })
             .catch((err) => {
                 error.value = err;
@@ -72,5 +41,5 @@ export function useRemoteData(urlRef, authRef, methodRef = ref("GET"), bodyRef =
             });
     };
 
-    return { data, status, error, loading, performRequest };
+    return { data, error, loading, performRequest };
 }
