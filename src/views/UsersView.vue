@@ -11,7 +11,7 @@ const { data, performRequest } = useRemoteData(urlRef, authRef);
 onMounted(() => {
   performRequest();
   console.log(data);
-    console.log(data._value);
+  console.log(data.value);
 
 });
 </script>
