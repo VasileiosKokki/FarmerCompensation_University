@@ -18,7 +18,7 @@ onMounted(() => {
 watch(data, (newValue, oldValue) => {
     if (newValue) {
         console.log(newValue);
-        console.log(newValue.value);
+        console.log(newValue._embedded.mUsers);
     }
 });
 </script>
