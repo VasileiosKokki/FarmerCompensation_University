@@ -15,41 +15,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.cors.CorsConfiguration;
 import java.util.List;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import java.util.Arrays;
 
-//@Configuration
-//@EnableWebSecurity
-//@EnableMethodSecurity(securedEnabled = true)
-//public class SecurityConfig {
-//
-//    @Autowired
-//    private UserService uds;
-//
-//    @Autowired
-//    private BCryptPasswordEncoder passwordEncoder;
-//
-//    @Autowired
-//    private UserDetailsService userDetailsService;
-//
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeHttpRequests((requests) -> requests
-//                        .requestMatchers("/", "/home").permitAll()
-//                        .requestMatchers("/user/new","/user/{user_id}","/user/role/{user_id}").hasRole("ADMIN")
-//                        .requestMatchers("/application/new/{user_id}","application/user/{user_id}","application/{applicationId}").hasRole("FARMER")
-//                        .requestMatchers("/application/makeDecision/{applicationId}","application/determineCompensation/{applicationId}").hasRole("INSPECTOR")
-//                        .anyRequest().authenticated()
-//                )
-//                .formLogin((form) -> form
-//                        .loginPage("/login")
-//                        .permitAll()
-//                )
-//                .logout((logout) -> logout.permitAll());
-//
-//        return http.build();
-//
-//    }
-//}
+
 
 @Configuration
 @EnableWebSecurity(debug = true)
@@ -74,13 +43,16 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         final CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedHeaders(
-                List.of("Authorization", "Cache-Control", "Content-Type"));
-        corsConfiguration.setAllowedOrigins(List.of("http://localhost:5173"));
-        corsConfiguration
-                .setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PUT", "OPTIONS", "PATCH", "DELETE"));
-        corsConfiguration.setAllowCredentials(true);
-        corsConfiguration.setExposedHeaders(List.of("Authorization"));
+//        corsConfiguration.setAllowedHeaders(
+//                List.of("Authorization", "Cache-Control", "Content-Type"));
+//        corsConfiguration.setAllowedOrigins(List.of("http://localhost:5173"));
+//        corsConfiguration
+//                .setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PUT", "OPTIONS", "PATCH", "DELETE"));
+//        corsConfiguration.setAllowCredentials(true);
+//        corsConfiguration.setExposedHeaders(List.of("Authorization"));
+          corsConfiguration.setAllowedOrigins(Arrays.asList("*"));
+          corsConfiguration.setAllowedMethods(Arrays.asList("*"));
+          corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
 
         http
                 .csrf(csrf -> csrf.disable())

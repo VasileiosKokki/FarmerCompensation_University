@@ -24,7 +24,7 @@ services:
       context: .
       dockerfile: nonroot.Dockerfile
     ports:
-      - "8080:9090"
+      - "9090:9090"
     depends_on:
       db:
         condition: service_healthy
@@ -43,8 +43,8 @@ services:
       context: https://github.com/VasileiosKokki/FarmerCompensation_University.git#devops-frontend
       #context: git@github.com:gkoulis/ds-lab-2023-frontend.git#env
       #dockerfile: Dockerfile
-    environment:
-      - VITE_BACKEND=http://spring:9090
+    #environment:
+    #  - VITE_BACKEND=http://spring:9090
     ports:
       - 9000:80
     depends_on:
