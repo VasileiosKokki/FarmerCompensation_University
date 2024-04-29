@@ -5,7 +5,7 @@
 import { ref } from "vue";
 import { useRouter } from 'vue-router';
 import { useRemoteData } from "@/composables/useRemoteData.js";
-const backendEnvVar = import.meta.env.VITE_BACKEND;
+// const backendEnvVar = import.meta.env.VITE_BACKEND;
 
 const router = useRouter();
 
@@ -19,7 +19,7 @@ const formDataRef = ref({
   "address": ""
 });
 
-const urlRef = ref(`${backendEnvVar}/api/user/new`);
+const urlRef = ref(`/api/user/new`);
 const authRef = ref(true);
 const methodRef = ref("POST");
 

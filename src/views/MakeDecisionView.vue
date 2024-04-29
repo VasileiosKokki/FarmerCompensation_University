@@ -5,11 +5,11 @@
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { useRemoteData } from '@/composables/useRemoteData.js';
-const backendEnvVar = import.meta.env.VITE_BACKEND;
+// const backendEnvVar = import.meta.env.VITE_BACKEND;
 
 const route = useRoute();
 const applicationId = ref(route.params.id);
-const urlRef = ref(`${backendEnvVar}/api/application/makeDecision/${applicationId.value}`);
+const urlRef = ref(`/api/application/makeDecision/${applicationId.value}`);
 const authRef = ref(true);
 const methodRef = ref("POST");
 
