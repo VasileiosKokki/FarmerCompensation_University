@@ -39,7 +39,7 @@ onMounted(() => {
               </tr>
               </thead>
               <tbody v-if="data && data.length > 0">
-              <tr v-for="user in data._embedded.mUsers" :key="user.id">
+              <tr v-for="user in data" :key="user.id">
                 <td>{{ user.id }}</td>
                 <td>{{ user.username }}</td>
 <!--                <td>{{ user.password }}</td>-->
@@ -50,7 +50,7 @@ onMounted(() => {
                 <td>{{ user.address }}</td>
                 <td>
                   <div class="btn-group">
-                    <router-link :to="{ name: 'edit-user', params: { id: user.id, phone: user.phone, email: user.email, address: user.address, data: data } }" class="btn btn-primary">Edit</router-link>
+                    <router-link v-if="typeof user.id !== 'undefined'" v-bind:to="{ name: 'edit-user', params: { id: user.id, phone: user.phone, email: user.email, address: user.address, data: data } }" class="btn btn-primary">Edit</router-link>
                     <router-link :to="{ name: 'delete-user', params: { id: user.id } }" class="btn btn-danger">Delete</router-link>
                   </div>
                   <div class="mt-2">
