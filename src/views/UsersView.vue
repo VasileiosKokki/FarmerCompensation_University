@@ -38,7 +38,7 @@ onMounted(() => {
                 <th>Actions</th>
               </tr>
               </thead>
-              <tbody v-if="data && data.length > 0">
+              <tbody v-if="data && data.length > 0 && data._embedded">
               <tr v-for="user in data" :key="user.id">
                 <td>{{ user.id }}</td>
                 <td>{{ user.username }}</td>
