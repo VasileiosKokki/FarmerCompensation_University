@@ -20,7 +20,6 @@ watch(data, (newValue, oldValue) => {
         console.log(newValue);
         console.log(JSON.stringify(newValue));
         console.log(JSON.parse(newValue));
-        });
     }
 });
 </script>
