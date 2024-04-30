@@ -2,7 +2,6 @@
 // Το component συνδέεται με το κατάλληλο endpoint και επικοινωνεί με το backend για να παραλάβει τα στοιχεία όλων των χρηστών.
 import { ref, onMounted, watch } from 'vue';
 import { useRemoteData } from '@/composables/useRemoteData.js';
-import { parse, stringify } from 'postcss';
 // const backendEnvVar = import.meta.env.VITE_BACKEND;
 
 const urlRef = ref('/api/user');
@@ -19,8 +18,9 @@ onMounted(() => {
 watch(data, (newValue, oldValue) => {
     if (newValue) {
         console.log(newValue);
-        console.log(stringify(newValue));
-        console.log(parse(newValue));
+        console.log(JSON.stringify(newValue));
+        console.log(JSON.parse(newValue));
+        });
     }
 });
 </script>
