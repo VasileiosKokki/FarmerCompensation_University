@@ -14,12 +14,11 @@ onMounted(() => {
 
 watch(data, (newValue, oldValue) => {
     if (newValue) {
-        console.log(newValue);
-        console.log(data);
-        console.log(data._rawValue);
-        console.log(data._rawValue._embedded);
+        // console.log(newValue);
+        // console.log(data);
+        // console.log(data._rawValue);
+        // console.log(data._rawValue._embedded);
         console.log(data._rawValue._embedded.mUsers);
-        console.log(data.value);
     }
 });
 </script>
@@ -49,7 +48,7 @@ watch(data, (newValue, oldValue) => {
               </tr>
               </thead>
               <tbody v-if="data && data.length > 0">
-              <tr v-for="mUser in data" :key="mUser.id">
+              <tr v-for="mUser in data._rawValue._embedded.mUsers" :key="mUser.id">
                 <td>{{ mUser.id }}</td>
                 <td>{{ mUser.username }}</td>
 <!--                <td>{{ user.password }}</td>-->
