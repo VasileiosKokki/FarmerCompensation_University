@@ -7,7 +7,6 @@ import { useRemoteData } from '@/composables/useRemoteData.js';
 const urlRef = ref('/api/user');
 const authRef = ref(true);
 const { data, performRequest } = useRemoteData(urlRef, authRef);
-let desiredobject;
 
 onMounted(() => {
   performRequest();
@@ -20,7 +19,6 @@ watch(data, (newValue, oldValue) => {
         // console.log(data._rawValue);
         // console.log(data._rawValue._embedded);
         console.log(data._rawValue._embedded.mUsers);
-        desiredobject = data._rawValue._embedded.mUsers;
     }
 });
 </script>
@@ -49,8 +47,8 @@ watch(data, (newValue, oldValue) => {
                 <th>Actions</th>
               </tr>
               </thead>
-              <tbody v-if="desiredobject && desiredobject.length > 0">
-              <tr v-for="mUser in desiredobject" :key="mUser.id">
+              <tbody v-if="data && data.length > 0">
+              <tr v-for="mUser in data._embedded.mUsers" :key="mUser.id">
                 <td>{{ mUser.id }}</td>
                 <td>{{ mUser.username }}</td>
 <!--                <td>{{ user.password }}</td>-->
