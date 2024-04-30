@@ -11,15 +11,15 @@ const { data, performRequest } = useRemoteData(urlRef, authRef);
 onMounted(() => {
   performRequest();
   console.log(data);
-  console.log(data._embedded.mUsers);
+  console.log(data._rawValue);
+    console.log(data._rawValue._embedded);
+  console.log(data._rawValue._embedded.mUsers);
 
 });
 
 watch(data, (newValue, oldValue) => {
     if (newValue) {
         console.log(newValue);
-        console.log(newValue._target);
-        console.log(newValue._target._embedded.mUsers);
     }
 });
 </script>
