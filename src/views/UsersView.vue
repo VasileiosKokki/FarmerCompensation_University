@@ -16,9 +16,15 @@ onMounted(() => {
 });
 
 watch(data, (newValue, oldValue) => {
-    if (newValue) {
-        console.log(newValue);
-        console.log(newValue._embedded.mUsers);
+    if (newValue && newValue._embedded && newValue._embedded.mUsers) {
+        const mUsers = newValue._embedded.mUsers;
+        console.log(mUsers);
+    } else if (newValue && newValue.mUsers) {
+        // Check if mUsers is directly available in the response
+        const mUsers = newValue.mUsers;
+        console.log(mUsers);
+    } else {
+        console.log("No mUsers found in the response");
     }
 });
 </script>
