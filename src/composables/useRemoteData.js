@@ -42,25 +42,20 @@ export function useRemoteData(urlRef, authRef, methodRef = ref("GET"), bodyRef =
 
                             contentType = response.headers.get('Content-Type');
 
-                            // // Αν υπάρχει στο header το application/json τότε χειριζόμαστε το response που δεχόμαστε από το backend σαν json, αλλιώς σαν text.
-                            // if (contentType && contentType.includes('application/json')) {
-                            //     return response.json().then((responseData) => {
-                            //         data.value = responseData;
-                            //         status.value = response.status;
-                            //     });
-                            // } else {
-                            //     return response.text().then((responseData) => {
-                            //         if (responseData != null) {
-                            //             data.value = responseData;
-                            //             status.value = response.status;
-                            //         }
-                            //     });
-                            // }
-
-                            return response.json().then((responseData) => {
-                                data.value = responseData;
-                                status.value = response.status;
-                            });
+                            // Αν υπάρχει στο header το application/json τότε χειριζόμαστε το response που δεχόμαστε από το backend σαν json, αλλιώς σαν text.
+                            if (contentType && contentType.includes('application/json')) {
+                                return response.json().then((responseData) => {
+                                    data.value = responseData;
+                                    status.value = response.status;
+                                });
+                            } else {
+                                return response.text().then((responseData) => {
+                                    if (responseData != null) {
+                                        data.value = responseData;
+                                        status.value = response.status;
+                                    }
+                                });
+                            }
 
                         default:
                             break;

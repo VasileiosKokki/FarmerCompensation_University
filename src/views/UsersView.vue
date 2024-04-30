@@ -10,18 +10,9 @@ const { data, performRequest } = useRemoteData(urlRef, authRef);
 
 onMounted(() => {
   performRequest();
+
 });
 
-watch(data, (newValue, oldValue) => {
-    if (newValue) {
-        // console.log(newValue);
-        // console.log(data);
-        // console.log(data._rawValue);
-        // console.log(data._rawValue._embedded);
-        console.log(data._rawValue._embedded.mUsers);
-        console.log(data._embedded.mUsers);
-    }
-});
 </script>
 
 <template>
@@ -49,23 +40,23 @@ watch(data, (newValue, oldValue) => {
               </tr>
               </thead>
               <tbody v-if="data && data.length > 0">
-              <tr v-for="mUser in data._rawValue._embedded.mUsers" :key="mUser.id">
-                <td>{{ mUser.id }}</td>
-                <td>{{ mUser.username }}</td>
+              <tr v-for="user in data" :key="user.id">
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
 <!--                <td>{{ user.password }}</td>-->
-                <td>{{ mUser.firstName }}</td>
-                <td>{{ mUser.lastName }}</td>
-                <td>{{ mUser.phone }}</td>
-                <td>{{ mUser.email }}</td>
-                <td>{{ mUser.address }}</td>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.address }}</td>
                 <td>
                   <div class="btn-group">
-                    <router-link v-if="typeof mUser.id !== 'undefined'" v-bind:to="{ name: 'edit-user', params: { id: mUser.id, phone: mUser.phone, email: mUser.email, address: mUser.address, data: data } }" class="btn btn-primary">Edit</router-link>
-                    <router-link v-if="typeof mUser.id !== 'undefined'" v-bind:to="{ name: 'delete-user', params: { id: mUser.id } }" class="btn btn-danger">Delete</router-link>
+                    <router-link :to="{ name: 'edit-user', params: { id: user.id, phone: user.phone, email: user.email, address: user.address, data: data } }" class="btn btn-primary">Edit</router-link>
+                    <router-link :to="{ name: 'delete-user', params: { id: user.id } }" class="btn btn-danger">Delete</router-link>
                   </div>
                   <div class="mt-2">
-                    <router-link v-if="typeof mUser.id !== 'undefined'" v-bind:to="{ name: 'role-to-user', params: { id: mUser.id, roleId: 1 } }" class="btn btn-outline-primary btn-sm">Assign Farmer Role</router-link>
-                    <router-link v-if="typeof mUser.id !== 'undefined'" v-bind:to="{ name: 'role-to-user', params: { id: mUser.id, roleId: 2 } }" class="btn btn-outline-info btn-sm">Assign Inspector Role</router-link>
+                    <router-link :to="{ name: 'role-to-user', params: { id: user.id, roleId: 1 } }" class="btn btn-outline-primary btn-sm">Assign Farmer Role</router-link>
+                    <router-link :to="{ name: 'role-to-user', params: { id: user.id, roleId: 2 } }" class="btn btn-outline-info btn-sm">Assign Inspector Role</router-link>
                   </div>
                 </td>
               </tr>
