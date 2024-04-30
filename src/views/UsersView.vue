@@ -19,6 +19,7 @@ watch(data, (newValue, oldValue) => {
         // console.log(data._rawValue);
         // console.log(data._rawValue._embedded);
         console.log(data._rawValue._embedded.mUsers);
+        console.log(data._embedded.mUsers);
     }
 });
 </script>
@@ -48,7 +49,7 @@ watch(data, (newValue, oldValue) => {
               </tr>
               </thead>
               <tbody v-if="data && data.length > 0">
-              <tr v-for="mUser in data._embedded.mUsers" :key="mUser.id">
+              <tr v-for="mUser in data._rawValue._embedded.mUsers" :key="mUser.id">
                 <td>{{ mUser.id }}</td>
                 <td>{{ mUser.username }}</td>
 <!--                <td>{{ user.password }}</td>-->
