@@ -2,9 +2,9 @@
 // Το component εμφανίζει το σύνολο όλων των applications, αφότου επικοινωνήσει με το backend.
 import { ref, onMounted } from 'vue';
 import { useRemoteData } from '@/composables/useRemoteData.js';
-// const backendEnvVar = import.meta.env.VITE_BACKEND;
+const backendEnvVar = import.meta.env.VITE_BACKEND;
 
-const urlRef = ref(`/api/application`);
+const urlRef = ref(`${backendEnvVar}/api/application`);
 const authRef = ref(true);
 const { data, performRequest } = useRemoteData(urlRef, authRef);
 
