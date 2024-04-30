@@ -21,7 +21,6 @@ watch(data, (newValue, oldValue) => {
         console.log(newValue);
         console.log(stringify(newValue));
         console.log(parse(newValue));
-        });
     }
 });
 </script>
