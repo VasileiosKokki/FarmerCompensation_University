@@ -16,15 +16,11 @@ onMounted(() => {
 });
 
 watch(data, (newValue, oldValue) => {
-    if (newValue && newValue._embedded && newValue._embedded.mUsers) {
-        const mUsers = newValue._embedded.mUsers;
-        console.log(mUsers);
-    } else if (newValue && newValue.mUsers) {
-        // Check if mUsers is directly available in the response
-        const mUsers = newValue.mUsers;
-        console.log(mUsers);
-    } else {
-        console.log("No mUsers found in the response");
+    if (newValue) {
+        console.log(newValue);
+        newValue.forEach(user => {
+            console.log(user.id);
+        });
     }
 });
 </script>
