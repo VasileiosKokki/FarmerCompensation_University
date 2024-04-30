@@ -18,8 +18,8 @@ onMounted(() => {
 watch(data, (newValue, oldValue) => {
     if (newValue) {
         console.log(newValue);
-        console.log(JSON.stringify(newValue));
-        console.log(JSON.parse(newValue));
+        console.log(newValue._target);
+        console.log(newValue._target._embedded.mUsers);
     }
 });
 </script>
