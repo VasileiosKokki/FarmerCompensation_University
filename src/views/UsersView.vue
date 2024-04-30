@@ -18,8 +18,13 @@ onMounted(() => {
 watch(data, (newValue, oldValue) => {
     if (newValue) {
         console.log(newValue);
-        newValue.forEach(user => {
-            console.log(user.id);
+        console.log(newValue.id);
+        Object.keys(newValue).forEach(key => {
+            // Access each property dynamically
+            const value = newValue[key];
+
+            // Do something with the key-value pair
+            console.log(`${key}:`, value);
         });
     }
 });
