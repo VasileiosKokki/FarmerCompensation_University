@@ -1,6 +1,7 @@
 package dit.hua.distributedSystems.project.demo.service;
 
 import dit.hua.distributedSystems.project.demo.entity.MUser;
+import dit.hua.distributedSystems.project.demo.entity.Role;
 import dit.hua.distributedSystems.project.demo.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Transactional
     public boolean findByEmail(String email) {
         return userRepository.existsByEmail(email);
+    }
+
+    @Transactional
+    public boolean findByRole(Role role) {
+        return userRepository.existsByRole(role);
     }
 
 

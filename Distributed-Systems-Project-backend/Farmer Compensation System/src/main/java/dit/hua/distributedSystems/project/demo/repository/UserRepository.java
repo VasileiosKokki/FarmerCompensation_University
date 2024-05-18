@@ -1,6 +1,7 @@
 package dit.hua.distributedSystems.project.demo.repository;
 
 import dit.hua.distributedSystems.project.demo.entity.MUser;
+import dit.hua.distributedSystems.project.demo.entity.Role;
 import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -15,4 +16,5 @@ public interface UserRepository  extends JpaRepository<MUser, Integer> {
     Boolean existsByUsername(String username);
 
     Boolean existsByEmail(String email);
+    Boolean existsByRole(Role role);
 }
