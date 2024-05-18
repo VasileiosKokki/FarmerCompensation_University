@@ -29,20 +29,23 @@ public class UserRestController {
     //Δήλωση μιας μεθόδου setup όπου θα κληθεί μόλις ξεκινήσει η εφαρμογή για την προσθήκη του admin και την προσθήκη των ρόλων στην βάση.
     @PostConstruct
     public void setup() {
+        Role role3 = new Role();
+        role3.setId(3);
+        role3.setRole("ROLE_ADMIN");
+
         if (roleService.getRoles().isEmpty()) {
-            Role role = new Role();
-            role.setId(1);
-            role.setRole("ROLE_FARMER");
-            roleService.saveRole(role);
             Role role1 = new Role();
-            role1.setId(2);
-            role1.setRole("ROLE_INSPECTOR");
+            role1.setId(1);
+            role1.setRole("ROLE_FARMER");
             roleService.saveRole(role1);
             Role role2 = new Role();
-            role2.setId(3);
-            role2.setRole("ROLE_ADMIN");
+            role2.setId(2);
+            role2.setRole("ROLE_INSPECTOR");
             roleService.saveRole(role2);
+            roleService.saveRole(role3);
+        }
 
+        if (!userService.findByRole(role3)) {
             MUser adminUser = new MUser();
 
             adminUser.setUsername("admin");
@@ -54,7 +57,7 @@ public class UserRestController {
             adminUser.setEmail("pavlosnikolopoulos@gmail.com");
             adminUser.setPhone("6942553328");
             adminUser.setAddress("Kipon 44");
-            adminUser.setRole(role2);
+            adminUser.setRole(role3);
             userService.saveUser(adminUser);
         }
     }
