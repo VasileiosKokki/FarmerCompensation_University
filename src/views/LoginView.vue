@@ -78,7 +78,7 @@ onBeforeMount(() => {
             </div>
             <div class="mb-2">
               <label for="usernameFormControl" class="form-label mb-1"
-              >Email address or Username</label
+              >Username</label
               >
               <input
                   v-model="credentials.username"

@@ -1,12 +1,22 @@
 <script setup>
 // Το component συνδέεται με το κατάλληλο endpoint και επικοινωνεί με το backend για να παραλάβει τα στοιχεία όλων των χρηστών.
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { useRemoteData } from '@/composables/useRemoteData.js';
+import { useApplicationStore } from '@/stores/application.js';
+const { userData } = useApplicationStore();
 
 
 const urlRef = ref(`/api/api/user`);
 const authRef = ref(true);
 const { data, performRequest } = useRemoteData(urlRef, authRef);
+const profile_id = userData.id;
+const sortedUsers = computed(() => {
+  return data.value.slice().sort((a, b) => {
+    if (a.id < b.id) return -1;
+    if (a.id > b.id) return 1;
+    return 0;
+  });
+});
 
 onMounted(() => {
   performRequest();
@@ -38,7 +48,7 @@ onMounted(() => {
               </tr>
               </thead>
               <tbody v-if="data && data.length > 0">
-              <tr v-for="user in data" :key="user.id">
+              <tr v-for="user in sortedUsers" :key="user.id">
                 <td>{{ user.id }}</td>
                 <td>{{ user.username }}</td>
 <!--                <td>{{ user.password }}</td>-->
@@ -50,11 +60,11 @@ onMounted(() => {
                 <td>
                   <div class="btn-group">
                     <router-link :to="{ name: 'edit-user', params: { id: user.id, phone: user.phone, email: user.email, address: user.address, data: data } }" class="btn btn-primary">Edit</router-link>
-                    <router-link :to="{ name: 'delete-user', params: { id: user.id } }" class="btn btn-danger">Delete</router-link>
+                    <router-link v-if="user.id !== profile_id" :to="{ name: 'delete-user', params: { id: user.id } }" class="btn btn-danger">Delete</router-link>
                   </div>
                   <div class="mt-2">
-                    <router-link :to="{ name: 'role-to-user', params: { id: user.id, roleId: 1 } }" class="btn btn-outline-primary btn-sm">Assign Farmer Role</router-link>
-                    <router-link :to="{ name: 'role-to-user', params: { id: user.id, roleId: 2 } }" class="btn btn-outline-info btn-sm">Assign Inspector Role</router-link>
+                    <router-link v-if="user.id !== profile_id" :to="{ name: 'role-to-user', params: { id: user.id, roleId: 1 } }" class="btn btn-outline-primary btn-sm">Assign Farmer Role</router-link>
+                    <router-link v-if="user.id !== profile_id" :to="{ name: 'role-to-user', params: { id: user.id, roleId: 2 } }" class="btn btn-outline-info btn-sm">Assign Inspector Role</router-link>
                   </div>
                 </td>
               </tr>
