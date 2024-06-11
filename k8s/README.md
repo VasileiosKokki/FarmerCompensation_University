@@ -19,7 +19,7 @@ docker push ghcr.io/<GITHUB-USERNAME>/ds-spring:latest
 ```
 ## create docker login secret
 
-* create a .dockerconfigjson file, like this
+* create a .dockerconfig.json file, like this
 ```json
 {
     "auths": {
