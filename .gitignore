@@ -3,7 +3,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-**/k8s/.dockerconfig.json
+/k8s/.dockerconfig.json
 
 ### STS ###
 .apt_generated
