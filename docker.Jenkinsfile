@@ -28,7 +28,7 @@ pipeline {
             steps {
                 sh '''
                             export ANSIBLE_CONFIG=~/workspace/ansible/ansible.cfg
-                            ansible-playbook -i ~/workspace/ansible/hosts.yaml -l appserver-vm ~/workspace/ansible/playbooks/check_if_docker_installed.yaml
+                            ansible-playbook -i ~/workspace/ansible/hosts.yaml -l local-control ~/workspace/ansible/playbooks/check_if_docker_installed.yaml
                         '''
             }
         }
