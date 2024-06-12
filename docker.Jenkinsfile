@@ -24,14 +24,6 @@ pipeline {
                 sh './mvnw test'
             }
         }
-        stage('Check if docker installed') {
-            steps {
-                sh '''
-                            export ANSIBLE_CONFIG=~/workspace/ansible/ansible.cfg
-                            ansible-playbook -i ~/workspace/ansible/hosts.yaml -l local-control ~/workspace/ansible/playbooks/check_if_docker_installed.yaml
-                        '''
-            }
-        }
         stage('Docker build and push') {
             steps {
                 sh '''
