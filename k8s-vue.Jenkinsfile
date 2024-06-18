@@ -10,7 +10,7 @@ pipeline {
         DOCKER_TOKEN = credentials('docker-push-secret')
         DOCKER_USER = 'vasileioskokki'
         DOCKER_SERVER = 'ghcr.io'
-        DOCKER_PREFIX = 'ghcr.io/vasileioskokki/ds-spring'
+        DOCKER_PREFIX = 'ghcr.io/vasileioskokki/ds-vue'
     }
 
     stages {
