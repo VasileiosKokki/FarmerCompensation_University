@@ -36,7 +36,7 @@ pipeline {
                     HEAD_COMMIT=$(git rev-parse --short HEAD)
                     TAG=$HEAD_COMMIT-$BUILD_ID
                     kubectl set image deployment/vue-deployment spring=$DOCKER_PREFIX:$TAG
-                    kubectl rollout status deployment spring-deployment --watch --timeout=2m
+                    kubectl rollout status deployment vue-deployment --watch --timeout=2m
                 '''
             }
         }
